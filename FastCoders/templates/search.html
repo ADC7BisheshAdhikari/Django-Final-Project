@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--bootstrap-css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <title>search</title>
+    <style>
+      body{
+        background-color: lightgray;
+      }
+      li{
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+    <h3 style="margin-left:500px;margin-top:65px;  font-style: oblique; color: orange;">Result</h3> 
+
+<ul>
+  {% for CompanyDetails in object_list %}
+    <li>
+      CompanyName:{{ CompanyDetails.cCompanyName }}<br>
+      VacantPost:{{ CompanyDetails.cVacantPost }}<br>
+      VacancyNumber:{{CompanyDetails.cVacancyNumber}}<br>
+      Email:{{CompanyDetails.cEmail}}<br>
+      Mobile:{{CompanyDetails.cMobile}}<br>
+      Location:{{CompanyDetails.cLocation}}
+      </li>
+  {% endfor %}
+  {% for message in messages %}
+  <h6> {{message}} </h6>
+  {% endfor %}
+</ul>
+</body>
+<script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+{% endblock %}
+
+</html>

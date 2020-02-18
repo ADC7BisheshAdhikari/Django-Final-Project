@@ -1,0 +1,13 @@
+
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    background-color:black;
+    
+}

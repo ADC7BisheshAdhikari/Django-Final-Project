@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+    
+{% block content %}
+<head>  
+    <meta charset="UTF-8">  
+    <title>Employee Records</title> 
+    <style>
+button{
+        background-color:lightgreen;
+        padding: 8px;
+        border-radius: 7px;
+        margin-top: -9px;
+    }
+    
+#show {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#show td, #show th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#show tr:nth-child(even){background-color: #f2f2f2;}
+
+#show tr:hover {background-color: #ddd;}
+
+#show th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+    </style>
+     
+    
+</head>  
+<body>   
+<h3 style="margin-left:500px;margin-top:65px;  font-style: oblique; color: orange;">Companies</h3> 
+<button><a href="/" class="btn btn-primary">Back</a>  </button>
+<table style="margin-top: 25px;" id="show">  
+    <thead>  
+    <tr>  
+        <th>Company Name</th>  
+        <th>Vacant Post</th>  
+        <th>Total no. of Vacany</th>  
+        <th>Email Address</th>  
+        <th>Phone</th> 
+        <th>Location</th>
+        {% if user.is_authenticated %}
+
+          
+        {% else %}
+        <th>Actions</th>
+        {% endif %}  
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for employee in employees %}  
+    <tr>  
+        <td>{{ employee.cCompanyName }}</td>  
+        <td>{{ employee.cVacantPost }}</td>  
+        <td>{{ employee.cVacancyNumber }}</td>  
+        <td>{{ employee.cEmail }}</td>
+        <td>{{ employee.cMobile }}</td>
+        <td>{{ employee.cLocation}}</td>  
+        {% if user.is_authenticated %}
+
+        {% else %}
+        <td>  
+            <button><a href="/edit/{{ employee.id }}"><span >Edit</span></a> </button>
+            <button> <a href="/delete/{{ employee.id }}">Delete</a>  </button>
+        </td>
+        {% endif %}   
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table >  
+<br>  
+<br>  
+{% if user.is_authenticated %}          
+{% else %}
+<button><a href="/company/" class="btn btn-primary">Add New Record</a>  </button>
+{% endif %} 
+
+
+<a href="/show/pagination/5/1">1</a>
+<a href="/show/pagination/5/2">2</a>
+<a href="/show/pagination/5/3">3</a>
+
+ 
+</body>  
+{% endblock %} 
+</html>     
